@@ -93,6 +93,7 @@ if not st.session_state.logged_in:
             st.session_state.logged_in = True
             st.session_state.reg_no = reg_noo
             st.success("Authentication Completed: Log in Successful")
+            st.experimental_rerun()
         else:
             st.error("Invalid Registration Number or DOB")
 else:
@@ -117,7 +118,9 @@ else:
         st.error("You have already booked a cycle.\n(Limit Exceeded)")
         st.subheader("RETURN THE CYCLE")
         submit = st.selectbox("Select Booth to Return",booth)
+        st.experimental_rerun()
         if st.button("Submit"):
             sumit_cycle(st.session_state.reg_no,submit)
             st.success("Successfully Submited")
+            st.experimental_rerun()
             
