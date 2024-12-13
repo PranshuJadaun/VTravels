@@ -15,7 +15,7 @@ BLOCK_2 = ['M', 'N', 'O', 'P']
 booth_details = {"AB1": AB1, "AB2": AB2, "BLOCK 1": BLOCK_1, "BLOCK 2": BLOCK_2}
 
 st.title("VTravel")
-st.text("By 🪲Bug Writers")
+st.text("By Pranshu Jadaun")
 
 # User validation function
 def user_validate(reg_no, dob):
