@@ -6,16 +6,11 @@ if 'logged_in' not in st.session_state:
 if 'reg_no' not in st.session_state:
     st.session_state.reg_no = None
 
+# Frontend data
 sd = "student_data.txt"
 booth = ['AB1', 'AB2', 'BLOCK_1', 'BLOCK_2', 'BLOCK_3', 'BLOCK_4', 'BLOCK_5', 'BLOCK_6', 'BLOCK_G']
-AB1 = ['A', 'B', 'C', 'D']
-AB2 = ['E', 'F', 'G', 'H']
-BLOCK_1 = ['I', 'J', 'K', 'L']
-BLOCK_2 = ['M', 'N', 'O', 'P']
-booth_details = {"AB1": AB1, "AB2": AB2, "BLOCK 1": BLOCK_1, "BLOCK 2": BLOCK_2}
-
-st.title("VTravel")
-st.text("By Pranshu Jadaun")
+st.title("VTravels")
+st.text("By BUG WRITERS") #TEAM NAME
 
 # User validation function
 def user_validate(reg_no, dob):
@@ -27,7 +22,7 @@ def user_validate(reg_no, dob):
     return False
 
 # Function to show booth availability
-def show_booth(selected, booth_details):
+def show_booth(selected):
     file_name = f"{selected}.txt"
     with open(file_name, 'r') as f:
         file = f.read()
@@ -42,6 +37,7 @@ def check_history(reg_no):
             return "Already Booked"
     return "Not Booked"
 
+# Function to Drop cycle
 def sumit_cycle(reg_no,submit):
     submit = f"{submit}.txt"
     with open("booked.txt",'r') as t:
@@ -58,6 +54,7 @@ def sumit_cycle(reg_no,submit):
             if not line.startswith(reg_no):
                 file.write(line)
 
+# Function to calculate rent
 def rent_calc(reg_no):
     with open("booked.txt", 'r') as f:
         lines = f.readlines()
@@ -83,7 +80,7 @@ def book_booth(selected, reg_no):
     with open(file_name, 'w') as f:
         f.write(my_string)
 
-if not st.session_state.logged_in:
+if not st.session_state.logged_in: # Streamlit method to stay login and take persistant data
     reg_noo = st.text_input("Enter Registration Number")
     dob = st.text_input("Enter your DOB in YYYY-MM-DD")
     
@@ -104,7 +101,7 @@ else:
         rent = rent_calc(st.session_state.reg_no)
         st.warning(f"Your Rent is {rent*2}")
     selected = st.selectbox("Select Booth: ", booth)
-    left = show_booth(selected, booth_details)
+    left = show_booth(selected)
     st.subheader(f"Number of Cycles Left: {left-1}")
     
     if check!="Already Booked":
@@ -119,8 +116,8 @@ else:
         st.error("You have already booked a cycle.\n(Limit Exceeded)")
         st.subheader("RETURN THE CYCLE")
         submit = st.selectbox("Select Booth to Return",booth)
-        if st.button("Submit"):
+        if st.button("Drop"):
             sumit_cycle(st.session_state.reg_no,submit)
-            st.success("Successfully Submited")
+            st.success("Successfully Dropped")
             st.rerun()
             

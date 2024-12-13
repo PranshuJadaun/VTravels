@@ -1,1 +1,1 @@
-0,A,B,C,D,L,T,K
+0,A,B,C,D,L,T,K,V,U
