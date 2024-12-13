@@ -112,6 +112,7 @@ else:
             if st.button("Book Now"):
                 book_booth(selected, st.session_state.reg_no)
                 st.success(f"Cycle booked at booth {selected}")
+                st.rerun()
         else:
             st.text(f"No Cycle is left at {selected} (Try another booth)")
     else:
