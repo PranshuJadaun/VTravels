@@ -42,7 +42,7 @@ Rental Time Calculation: The rental time and rent are calculated based on the ti
 **Installation & Setup**
 
 Clone this repository to your local machine.
-git clone https://github.com/yourusername/vtravel.git
+git clone https://github.com/PranshuJadaun/VTravels
 cd vtravel
 Install required libraries:
 pip install -r requirements.txt
